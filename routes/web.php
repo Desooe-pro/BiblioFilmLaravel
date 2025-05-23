@@ -48,7 +48,7 @@ Route::post("/films/edit", [FilmController::class, "edit"])->name("films.edit");
 // Suppression du film
 Route::delete("/delete/films/{id}", [FilmController::class, "delete"])->name("films.delete");
 
-// Afficher les films par ordre alphabetique
+// Afficher les films par triés
 Route::get("films/sorted/{type}/{order}", function (string $type, string $order){
     $films = FilmController::getSorted($type, $order);
 
@@ -60,6 +60,7 @@ Route::get("films/sorted/{type}/{order}", function (string $type, string $order)
     return view("films.index", compact("films", "sortie", "note", "filtre"));
 })->name("films.sorted");
 
+// Afficher les films filtrés
 Route::get("/films/filtre/{filtre}", function (string $filtre){
     $films = FilmController::getFiltered($filtre);
 
